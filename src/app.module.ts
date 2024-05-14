@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { HelloModule } from './hello/hello.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Hello } from './hello/entities/hello.entity';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './auth/service/auth.service';
 import { AuthModule } from './auth/auth.module';
 
 @Module({

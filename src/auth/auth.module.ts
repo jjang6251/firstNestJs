@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { HelloModule } from 'src/hello/hello.module';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
+import { AuthService } from './service/auth.service';
+import { AuthController } from './controller/auth.controller';
 
 @Module({
     imports: [
@@ -10,8 +10,8 @@ import { AuthController } from './auth.controller';
         JwtModule.register({
             global: true,
             //secret: jwtConstants.secret,
-            secret: 'secrete',
-            signOptions: { expiresIn: '60s' },
+            secret: 'secret',
+            signOptions: { expiresIn: '10h' },
         }),
     ],
     providers: [AuthService],

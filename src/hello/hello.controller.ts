@@ -1,11 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request, UseGuards } from '@nestjs/common';
 import { HelloService } from './hello.service';
 import { CreateHelloDto } from './dto/create-hello.dto';
 import { UpdateHelloDto } from './dto/update-hello.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('hello')
 export class HelloController {
   constructor(private readonly helloService: HelloService) {}
+
+  @UseGuards(AuthGuard)
+  @Get('auth')
+  hello(@Body() createHelloDto: CreateHelloDto, @Request() req) {
+    const message = {
+      ...createHelloDto,
+      ...req.user,
+    };
+    return message;
+  }
 
   @Post()
   create(@Body() createHelloDto: CreateHelloDto) {
